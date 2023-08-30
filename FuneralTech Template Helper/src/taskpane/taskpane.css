@@ -1,0 +1,83 @@
+/* General styles */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 10px;
+    padding: 0;
+    background-color: #f4f4f4; /* Neutral background color */
+  }
+  
+  /* Title styles */
+  h1 {
+    font-size: 1.2em; /* Smaller font size */
+    margin-bottom: 10px;
+  }
+  
+  /* Search input styles */
+  #searchInput {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* Field list container */
+  #fieldList {
+    margin-top: 10px;
+  }
+  
+/* Individual field item styles */
+.fieldItem {
+    display: block; /* One field per line */
+    cursor: pointer;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    padding: 6px 12px; /* More compact padding */
+    margin: 4px 0; /* Vertical margin only */
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    font-size: 0.7em; /* Smaller text */
+  }
+  .fieldItem:hover {
+    background-color: #ddd;
+  }
+  
+  /* Load Fields Button */
+  #loadFieldsButton {
+    padding: 8px 16px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  #loadFieldsButton:hover {
+    background-color: #ddd;
+  }
+  
+  /* Menu styles */
+.menu {
+    display: none;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    margin: 4px 0;
+    border-radius: 4px;
+  }
+  
+  .menuOption {
+    padding: 4px 8px;
+    cursor: pointer;
+    border-top: 1px solid #ccc;
+  }
+  
+  .menuOption:first-child {
+    border-top: none;
+  }
+  
+  .menuOption:hover {
+    background-color: #ddd;
+  }
