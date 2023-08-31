@@ -113,21 +113,106 @@ function insertAdvancedField(fieldName, type) {
 
 // Function to generate OOXML for Full Text
 function generateFullTextOoxml(fieldName) {
-  return `<w:fldSimple w:instr=" MERGEFIELD ${fieldName} \\* MERGEFORMAT "><w:r><w:t>${fieldName}</w:t></w:r></w:fldSimple>`;
+  let ooxml = `<pkg:package xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">
+  <pkg:part pkg:name="/_rels/.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="512">
+    <pkg:xmlData>
+      <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+        <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+      </Relationships>
+    </pkg:xmlData>
+  </pkg:part>
+  <pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+    <pkg:xmlData>
+      <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+        <w:body>
+          <w:p>
+            <w:r>
+              <w:fldChar w:fldCharType="begin"/>
+            </w:r>
+            <w:r>
+              <w:instrText xml:space="preserve"> MERGEFIELD ${fieldName} </w:instrText>
+            </w:r>
+            <w:r>
+              <w:fldChar w:fldCharType="end"/>
+            </w:r>
+          </w:p>
+        </w:body>
+      </w:document>
+    </pkg:xmlData>
+  </pkg:part>
+</pkg:package>`;
+  console.log(ooxml);
+  return ooxml;
 }
 
 // Function to generate OOXML for First Letter of Field
 function generateFirstLetterOoxml(fieldName) {
-  let ooxml = '<w:p>';
+  let ooxml = `<pkg:package xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">
+  <pkg:part pkg:name="/_rels/.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="512">
+    <pkg:xmlData>
+      <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+        <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+      </Relationships>
+    </pkg:xmlData>
+  </pkg:part>
+  <pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+    <pkg:xmlData>
+      <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+        <w:body>
+          <w:p>
+            `;
+
+  // Loop through the alphabet to generate the IF conditions
   for (let i = 65; i <= 90; i++) {
     const letter = String.fromCharCode(i);
-    ooxml += `<w:fldSimple w:instr='IF "{ MERGEFIELD ${fieldName} }" = "${letter}" "${letter}"'><w:r><w:t>${letter}</w:t></w:r></w:fldSimple>`;
+
+    // IF field begin
+    ooxml += `<w:r><w:fldChar w:fldCharType="begin"/></w:r>
+              <w:r><w:instrText xml:space="preserve"> IF </w:instrText></w:r>
+              <w:r><w:fldChar w:fldCharType="begin"/></w:r>
+              <w:r><w:instrText xml:space="preserve"> MERGEFIELD ${fieldName} </w:instrText></w:r>
+              <w:r><w:fldChar w:fldCharType="end"/></w:r>
+              <w:r><w:instrText xml:space="preserve"> = "${letter}*" "${letter}" "" </w:instrText></w:r>
+              <w:r><w:fldChar w:fldCharType="end"/></w:r>`;
   }
-  ooxml += '</w:p>';
+
+  ooxml += `</w:p>
+          </w:body>
+        </w:document>
+     </pkg:xmlData>
+    </pkg:part>
+  </pkg:package>`;
+  console.log(ooxml);
   return ooxml;
 }
 
-// Function to generate OOXML for Boolean Checkbox
+
+
 function generateBooleanCheckboxOoxml(fieldName) {
-  return `<w:fldSimple w:instr='IF "{ MERGEFIELD ${fieldName} }" = " " "X" ""'><w:r><w:t>X</w:t></w:r></w:fldSimple>`;
+  return `<pkg:package xmlns:pkg="http://schemas.microsoft.com/office/2006/xmlPackage">
+    <pkg:part pkg:name="/_rels/.rels" pkg:contentType="application/vnd.openxmlformats-package.relationships+xml" pkg:padding="512">
+      <pkg:xmlData>
+        <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+          <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+        </Relationships>
+      </pkg:xmlData>
+    </pkg:part>
+    <pkg:part pkg:name="/word/document.xml" pkg:contentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml">
+      <pkg:xmlData>
+        <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+          <w:body>
+            <w:p>
+              <w:r><w:fldChar w:fldCharType="begin"/></w:r>
+              <w:r><w:instrText xml:space="preserve"> IF </w:instrText></w:r>
+              <w:r><w:fldChar w:fldCharType="begin"/></w:r>
+              <w:r><w:instrText xml:space="preserve"> MERGEFIELD ${fieldName} </w:instrText></w:r>
+              <w:r><w:fldChar w:fldCharType="end"/></w:r>
+              <w:r><w:instrText xml:space="preserve"> = " " "X" "" </w:instrText></w:r>
+              <w:r><w:fldChar w:fldCharType="end"/></w:r>
+            </w:p>
+          </w:body>
+        </w:document>
+      </pkg:xmlData>
+    </pkg:part>
+  </pkg:package>`;
 }
