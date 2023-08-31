@@ -80,7 +80,6 @@ function showMenu(event) {
 
 // Function to insert advanced merge fields
 function insertAdvancedField(fieldName, type) {
-  console.log(`insertAdvancedField called with fieldName: ${fieldName} and type: ${type}`);
 
   Word.run(function(context) {
     const range = context.document.getSelection();
@@ -106,8 +105,6 @@ function insertAdvancedField(fieldName, type) {
       range.insertOoxml(ooxml, Word.InsertLocation.end);
       return context.sync();
     });
-  }).catch(function(error) {
-    console.error(JSON.stringify(error));
   });
 }
 
@@ -141,7 +138,6 @@ function generateFullTextOoxml(fieldName) {
     </pkg:xmlData>
   </pkg:part>
 </pkg:package>`;
-  console.log(ooxml);
   return ooxml;
 }
 
@@ -182,7 +178,6 @@ function generateFirstLetterOoxml(fieldName) {
      </pkg:xmlData>
     </pkg:part>
   </pkg:package>`;
-  console.log(ooxml);
   return ooxml;
 }
 
