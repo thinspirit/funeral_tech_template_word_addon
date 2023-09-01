@@ -1,21 +1,25 @@
 /* eslint-disable no-undef */
 
-const devCerts = require("office-addin-dev-certs");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const urlDev = "https://localhost:3000/";
-const urlProd = "https://www.contoso.com/"; // CHANGE THIS TO YOUR PRODUCTION DEPLOYMENT LOCATION
+const urlProd = "https://apps.woodland.local/";
 
 async function getHttpsOptions() {
-  const httpsOptions = await devCerts.getHttpsServerOptions();
-  return { ca: httpsOptions.ca, key: httpsOptions.key, cert: httpsOptions.cert };
+  if (process.env.NODE_ENV !== 'production') {
+    const devCerts = require("office-addin-dev-certs");
+    const httpsOptions = await devCerts.getHttpsServerOptions();
+    return { ca: httpsOptions.ca, key: httpsOptions.key, cert: httpsOptions.cert };
+  }
+  return {};
 }
 
 module.exports = async (env, options) => {
   const dev = options.mode === "development";
   const config = {
-    devtool: "source-map",
+    mode: dev ? 'development' : 'production',
+    devtool: dev ? "source-map" : false,
     entry: {
       polyfill: ["core-js/stable", "regenerator-runtime/runtime"],
       taskpane: ["./src/taskpane/taskpane.js", "./src/taskpane/taskpane.html"],

@@ -13,10 +13,12 @@
 </head>
 <body>
   <h1>FuneralTech Template Helper: Merge Fields</h1>
+  
+  <button class="loadButtons" id="loadDefaultFieldsButton">Load Default Fields</button>
 
   <!-- File input for uploading CSV/XLS file -->
   <input type="file" id="fileInput" accept=".csv" />
-  <button id="loadFieldsButton">Load Fields</button>
+  <button id="loadFieldsButton" class="loadButtons">Load Fields</button>
 
   <!-- Search input for filtering fields -->
   <input type="text" id="searchInput" placeholder="Search fields..." oninput="filterFields()"/>

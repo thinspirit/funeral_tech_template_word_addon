@@ -3,6 +3,7 @@
 Office.onReady(function(info) {
   if (info.host === Office.HostType.Word) {
     document.getElementById("loadFieldsButton").addEventListener("click", readFile);
+    document.getElementById("loadDefaultFieldsButton").addEventListener("click", loadDefaultFields); // New line
     document.getElementById("searchInput").addEventListener("input", filterFields);
     document.body.addEventListener("click", function() {
       const existingMenu = document.querySelector(".menu");
@@ -210,4 +211,17 @@ function generateBooleanCheckboxOoxml(fieldName) {
       </pkg:xmlData>
     </pkg:part>
   </pkg:package>`;
+}
+
+// Function to load default fields from the CSV file
+function loadDefaultFields() {
+  fetch('assets/field_names.csv')
+    .then(response => response.text())
+    .then(data => {
+      const fields = data.split('\n').map(row => row.trim());
+      populateFields(fields);
+    })
+    .catch(error => {
+      console.error("Error loading default fields:", error);
+    });
 }

@@ -10,7 +10,7 @@
   <HighResolutionIconUrl DefaultValue="https://apps.woodland.local/funeraltechhelperassets/icon-64.png"/>
   <SupportUrl DefaultValue="https://github.com/thinspirit/funeral_tech_template_word_addon"/>
   <AppDomains>
-    <AppDomain>https://apps.woodland.local/funeraltechhelper</AppDomain>
+    <AppDomain>https://apps.woodland.local/</AppDomain>
   </AppDomains>
   <Hosts>
     <Host Name="Document"/>
