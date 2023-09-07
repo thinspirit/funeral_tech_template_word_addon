@@ -8,7 +8,7 @@ body {
   
   /* Title styles */
   h1 {
-    font-size: 1.2em; /* Smaller font size */
+    font-size: 0.8em; /* Smaller font size */
     margin-bottom: 10px;
   }
   
@@ -45,7 +45,7 @@ body {
   }
   
   /* Load Fields Button */
-  #loadFieldsButton {
+  .loadButtons {
     padding: 8px 16px;
     margin: 10px 0;
     border: 1px solid #ccc;
