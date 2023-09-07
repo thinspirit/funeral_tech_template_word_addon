@@ -307,6 +307,7 @@ contract_taxtotal
 contract_total
 contract_total_no_discount_taxed
 contract_total_tax_no_discounts
+cpp_applicant_SIN
 cpp_applicant_address_address1
 cpp_applicant_address_address2
 cpp_applicant_address_city
@@ -328,6 +329,10 @@ cpp_applicant_phone
 cpp_applicant_relationship
 cpp_applicant_reverseRelationship
 cpp_applicant_workPhone
+cpp_applicant_verbal_com
+cpp_applicant_verbal_com_sku
+cpp_applicant_written_com
+cpp_applicant_written_com_sku
 currencyType
 currentLocation_address_address1
 currentLocation_address_address2
@@ -407,6 +412,8 @@ deceased_exact_age_months
 deceased_exact_age_years
 deceased_firstName
 deceased_fullName
+deceased_gender
+deceased_gender_sku
 deceased_lastName
 deceased_liveworkoth_country_name
 deceased_middleName
